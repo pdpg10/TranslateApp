@@ -16,10 +16,10 @@ interface WordDao {
     @Query(
         """
         select * from word 
-        where nameUz=:it 
+        where nameUz=:it limit 1
     """
     )
-    fun search(it: String): Maybe<List<Word>>
+    fun search(it: String): Word?
 
 
     @Query("select * from word")

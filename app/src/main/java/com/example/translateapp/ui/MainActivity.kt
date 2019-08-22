@@ -8,6 +8,7 @@ import com.example.translateapp.R
 import com.example.translateapp.ui.adapter.WordAdapter
 import com.example.translateapp.vm.WordVm
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Consumer
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -31,7 +32,7 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             return false
         } else {
              vm.searchWord(this, query)
-                .subscribe { adapter.submitList(it) }
+                .subscribe(Consumer { adapter.submitList(listOf(it)) })
                  .let { cd.add(it) }
         }
         return true
