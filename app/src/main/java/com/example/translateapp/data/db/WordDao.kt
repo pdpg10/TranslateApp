@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.Query
 import com.example.translateapp.data.Word
 import io.reactivex.Maybe
-import io.reactivex.Single
 
 @Dao
 interface WordDao {
@@ -19,7 +18,7 @@ interface WordDao {
         where nameUz=:it limit 1
     """
     )
-    fun search(it: String): Word?
+    fun search(it: String): Maybe<List<Word>>
 
 
     @Query("select * from word")

@@ -31,9 +31,9 @@ class MainActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         if (query == null) {
             return false
         } else {
-             vm.searchWord(this, query)
-                .subscribe(Consumer { adapter.submitList(listOf(it)) })
-                 .let { cd.add(it) }
+            vm.searchWord(this, query)
+                .subscribe { adapter.submitList(it) }
+                .let { cd.add(it) }
         }
         return true
     }
